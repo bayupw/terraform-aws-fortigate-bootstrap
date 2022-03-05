@@ -52,6 +52,7 @@ resource "aws_s3_object" "init_conf" {
 # IAM
 # ---------------------------------------------------------------------------------------------------------------------
 
+# Create IAM role
 resource "aws_iam_role" "this" {
   name = local.aws_iam_role
 
@@ -72,6 +73,7 @@ resource "aws_iam_role" "this" {
 EOF
 }
 
+# Create IAM policy
 resource "aws_iam_policy" "this" {
   name        = local.aws_iam_policy
   description = local.aws_iam_policy
@@ -103,6 +105,7 @@ resource "aws_iam_policy" "this" {
 EOF
 }
 
+# Attach IAM policy
 resource "aws_iam_role_policy_attachment" "attach" {
   role       = aws_iam_role.this.name
   policy_arn = aws_iam_policy.this.arn
